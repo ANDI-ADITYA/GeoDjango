@@ -1,0 +1,28 @@
+{% load static %}
+{% load leaflet_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% leaflet_js %}
+	{% leaflet_css %}
+	{% include "snippets/styles.html" %}
+	<title>
+		{% block Title %}
+			
+		{% endblock Title %}
+	</title>
+</head>
+<body>
+	{% include "snippets/navbar.html" %}
+<div class="container " style="margin-top:70px">
+	{% block Heading %}
+		
+	{% endblock Heading %}
+</div>
+	{% block Contents %}
+		
+	{% endblock Contents %}
+
+	{% include "snippets/scripts.html" %}
+</body>
+</html>

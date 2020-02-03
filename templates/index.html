@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load leaflet_tags %}
+
+{% block Title %}
+	WebGis Geofisika
+{% endblock Title %}
+
+{% block Heading %}
+
+{% endblock Heading %}
+
+{% block Contents %}
+	<script>
+		function map_layers(map,option){
+			var Point = new L.GeoJSON.AJAX("{% url 'maps:data_point' %}",{
+				onEachFeature: function(feature, layer){
+					layer.bindPopup(feature.properties.name.toString());
+				}
+			});
+			var Provinsi = new L.GeoJSON.AJAX("{% url 'maps:data_provinsi' %}",{
+				onEachFeature: function(feature, layer){
+					layer.bindPopup(feature.properties.provinsi.toString());
+				}
+			});
+			Point.addTo(map);
+			Provinsi.addTo(map);
+		}
+	</script>
+	{% leaflet_map "gis" callback="window.map_layers" %}
+{% endblock Contents %}
+
+
