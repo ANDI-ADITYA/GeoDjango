@@ -20,15 +20,3 @@ class Point(models.Model):
 	class Meta:
 		ordering = ('name',)
 		verbose_name_plural = "Points"
-
-
-class Provinsi(models.Model):
-	provinsi = models.CharField(max_length=255)
-	sumber = models.CharField(max_length=255)
-	polygon = models.MultiPolygonField(srid=4326)
-
-	def __unicode__(self):
-		return self.provinsi
-
-	class Meta:
-		verbose_name_plural = "Provinsi"

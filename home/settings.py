@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'geofisika',
-        'USER': 'aditya',
+        'USER': 'postgres',
         'PASSWORD': 'ARAditya22',
         'HOST': 'localhost',
         'PORT': '5432',

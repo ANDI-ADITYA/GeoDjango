@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Point, Provinsi
+from .models import Point
 from leaflet.admin import LeafletGeoAdmin
 # Register your models here.
 
@@ -9,8 +9,4 @@ class PointAdmin(LeafletGeoAdmin):
 		'slug',	
 	]
 
-class ProvinsiAdmin(LeafletGeoAdmin):
-	list_display = ('provinsi','sumber')
-
 admin.site.register(Point, PointAdmin)
-admin.site.register(Provinsi, ProvinsiAdmin)
