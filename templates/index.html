@@ -10,7 +10,7 @@
 {% endblock Heading %}
 
 {% block Contents %}
-	<script>
+	<script> 
 		function map_layers(map,option){
 			var Point = new L.GeoJSON.AJAX("{% url 'maps:data_point' %}",{
 				onEachFeature: function(feature, layer){

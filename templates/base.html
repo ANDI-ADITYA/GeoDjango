@@ -12,7 +12,10 @@
 	<script src="{% static "vendor/leaflet/leaflet.ajax.js" %}"></script>
 	<script src="{% static "vendor/leaflet/leaflet.groupedlayercontrol.js" %}"></script>
 <!-- Style -->
-	<link rel="stylesheet" href="{% static "css/style.css"%}">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<style type="text/css">
+		#gis {height: 100%; position: fixed; width: 100%;}
+	</style>
 
 	<title>{% block Title %}{% endblock Title %}</title>
 </head>
@@ -20,20 +23,16 @@
 <!-- Navbar -->
 	{% include "snippets/navbar.html" %}
 <!-- Contents -->
-<main role="main" class="container">
-	<div class="row">
-		<div class="col-md-8">
-			{% if messages %}
-				{% for message in messages %}
-					<div class="alert alert-{{ message.tags }}">
-						{{ message }}
-					</div>
-				{% endfor %}
-			{% endif %}
-		</div>
+	<div class="col-md-8">
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-{{ message.tags }}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
 	</div>
-		{% block Contents %}{% endblock Contents %}
-</main>
+{% block Contents %}{% endblock Contents %}
 <!-- Javascript -->
 	<script src="{% static "vendor/jquery/jquery.js" %}"></script>
 	<script src="{% static "vendor/popper/popper.js" %}"></script>
