@@ -20,3 +20,15 @@ class Point(models.Model):
 	class Meta:
 		ordering = ('name',)
 		verbose_name_plural = "Points"
+
+class shapefile(models.Model):
+	title = models.CharField(max_length=100)
+	author = models.CharField(max_length=100)
+	shp = models.FileField(upload_to='shps/')
+
+	def __str__(self):
+		return self.title
+
+	def delete(self, *args, **kwargs):
+		self.shp.delete()
+		super().delete(*args, **kwargs)	

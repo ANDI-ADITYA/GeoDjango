@@ -19,8 +19,21 @@
 <body>
 <!-- Navbar -->
 	{% include "snippets/navbar.html" %}
-<!-- Map -->
-	{% block Contents %}{% endblock Contents %}
+<!-- Contents -->
+<main role="main" class="container">
+	<div class="row">
+		<div class="col-md-8">
+			{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-{{ message.tags }}">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+		{% block Contents %}{% endblock Contents %}
+</main>
 <!-- Javascript -->
 	<script src="{% static "vendor/jquery/jquery.js" %}"></script>
 	<script src="{% static "vendor/popper/popper.js" %}"></script>

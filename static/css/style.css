@@ -4,6 +4,8 @@
 html,body{
     height: 100%;
 }
-#gis{
-    height: 90%;
+.gis{
+    height: 100%;
+    position: fixed;
+    width: 100%;
 }

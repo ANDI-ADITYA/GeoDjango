@@ -20,9 +20,15 @@
           User
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
-          <a class="dropdown-item" href="#">Create Maps</a>
-          <a class="dropdown-item" href="#">Manage Maps</a>
+          {% if user.is_authenticated %}
+            <a class="dropdown-item" href="/shapefile">Shapefile List</a>
+            <a class="dropdown-item" href="/shapefile/upload">Upload Shapefile</a>
+            <a class="dropdown-item" href="/logout">Logout</a>
+          {% else %}
+            <a class="dropdown-item" href="/shapefile">Shapefile List</a>
+            <a class="dropdown-item" href="/login">Login</a>
+            <a class="dropdown-item" href="/register">Register</a>
+          {% endif %}
         </div>
       </div>
     </div>

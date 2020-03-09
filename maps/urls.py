@@ -1,13 +1,12 @@
 from django.urls import path
-from .views import (
-	HomePageView,  
-	point_datasets, 
-)
+from . import views as maps_views
+
 
 app_name='maps'
 
 urlpatterns = [
-	path('', HomePageView.as_view(),name='home'),	
-	path('data-point/', point_datasets,name='data_point'),
+	path('', maps_views.HomePageView.as_view(), name='home-maps'),	
+	path('data-point/', maps_views.point_datasets, name = 'data_point'),
+	path('shapefile/', maps_views.shapefile_list, name='shapefile_list'),
 
 ]
