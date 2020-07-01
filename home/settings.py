@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'home.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'geofisika',
+        'NAME': 'webgis',
         'USER': 'postgres',
         'PASSWORD': 'ARAditya22',
         'HOST': 'localhost',
@@ -133,8 +133,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'data')
 MEDIA_URL = '/data/'
 
 LEAFLET_CONFIG = {
-    'DEFAULT_CENTER': (-2.0308624,117.5112687),
-    'DEFAULT_ZOOM': 5,
+    'DEFAULT_CENTER': (-5.1384029,119.4463882),
+    'DEFAULT_ZOOM': 13,
+    'MAX_ZOOM': 20,
+    'MIN_ZOOM': 5,
+    'SCALE': 'both',
     'ATTRIBUTION_PREFIX': 'Departemen Geofisika Unhas',
 }
 

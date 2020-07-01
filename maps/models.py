@@ -8,11 +8,6 @@ class Point(models.Model):
 	name = models.CharField(max_length=100)
 	category = models.CharField(max_length=50)
 	points = models.PointField(srid=4326)
-	slug = models.SlugField(blank=True, editable=False)
-
-	def save(self):
-		self.slug = slugify(self.name)
-		super().save()
 
 	def __unicode__(self):
 		return self.name
@@ -21,14 +16,27 @@ class Point(models.Model):
 		ordering = ('name',)
 		verbose_name_plural = "Points"
 
-class shapefile(models.Model):
-	title = models.CharField(max_length=100)
-	author = models.CharField(max_length=100)
-	shp = models.FileField(upload_to='shps/')
+class Shapefile(models.Model):
+	objname = models.CharField(max_length=100)
+	wadmkk = models.CharField(max_length=100)
+	wadmpr = models.CharField(max_length=100)
+	shp = models.MultiPolygonField(srid=4326)
 
-	def __str__(self):
-		return self.title
+	def __unicode__(self):
+		return self.objname
 
-	def delete(self, *args, **kwargs):
-		self.shp.delete()
-		super().delete(*args, **kwargs)	
+	class Meta:
+		ordering = ('objname',)
+		verbose_name_plural = "Shapefile"
+
+class Lines(models.Model):
+	name = models.CharField(max_length=100)
+	category = models.CharField(max_length=50)
+	lines = models.LineStringField(srid=4326)
+
+	def __unicode__(self):
+		return self.name
+
+	class Meta:
+		ordering = ('name',)
+		verbose_name_plural = "Lines"

@@ -6,7 +6,11 @@
 {% endblock Title %}
 
 {% block Contents %}
-    <div class="container jumbotron content-section mt-5">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+            <div class="card card-signin flex-row my-5">
+                <div class="container jumbotron content-section mt-5">
         <form action="" method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
@@ -23,4 +27,9 @@
             </small>
         </div>
     </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
 {% endblock Contents %}

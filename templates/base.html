@@ -3,27 +3,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 	{% leaflet_js %}
 	{% leaflet_css %}
-<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}">
-<!-- Leaflet -->
-	<link rel="stylesheet" href="{% static "vendor/leaflet/leaflet.groupedlayercontrol.css" %}">
-	<script src="{% static "vendor/leaflet/leaflet.ajax.js" %}"></script>
-	<script src="{% static "vendor/leaflet/leaflet.groupedlayercontrol.js" %}"></script>
-<!-- Style -->
-	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	{% include 'vendor.html' %}
+	<!-- Style -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/theme.css' %}">
 	<style type="text/css">
 		#gis {height: 100%; position: fixed; width: 100%;}
 	</style>
 
 	<title>{% block Title %}{% endblock Title %}</title>
 </head>
-<body>
-<!-- Navbar -->
-	{% include "snippets/navbar.html" %}
+<body onload="initialize()">
 <!-- Contents -->
-	<div class="col-md-8">
+	<div class="col-md-8 fixed-top">
 		{% if messages %}
 			{% for message in messages %}
 				<div class="alert alert-{{ message.tags }}">
@@ -34,8 +31,9 @@
 	</div>
 {% block Contents %}{% endblock Contents %}
 <!-- Javascript -->
-	<script src="{% static "vendor/jquery/jquery.js" %}"></script>
-	<script src="{% static "vendor/popper/popper.js" %}"></script>
-	<script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+	<script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+	<script src="{% static 'vendor/popper/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery-sidebar.js' %}"></script>
 </body>
 </html>
