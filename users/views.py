@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
 from .forms import UserRegisterForm
 
 # Create your views here.
@@ -16,8 +17,10 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 def upload(request):
+    context = {}
     if request.method == 'POST':
         uploaded_file = request.FILES['document']
-        print(uploaded_file.name)
-        print(uploaded_file.size)
-    return render(request,'upload.html')
+        fs = FileSystemStorage()
+        name = fs.save(uploaded_file.name, uploaded_file)
+        context['url'] = fs.url(name)
+    return render(request,'upload.html', context)
