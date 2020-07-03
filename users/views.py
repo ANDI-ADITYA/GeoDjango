@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
-from .forms import UserRegisterForm
+from .forms import (
+    UserRegisterForm,
+    ShapefileForm,
+    RasterForm
+)
 
 # Create your views here.
 def register(request):
@@ -16,11 +20,27 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
-def upload(request):
-    context = {}
+def uploadshapefile(request):
     if request.method == 'POST':
-        uploaded_file = request.FILES['document']
-        fs = FileSystemStorage()
-        name = fs.save(uploaded_file.name, uploaded_file)
-        context['url'] = fs.url(name)
-    return render(request,'upload.html', context)
+        form = ShapefileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('files')
+    else:
+        form = ShapefileForm()
+    return render(request,'upload_Shapefile.html', {
+        'form': form
+    })
+
+def uploadraster(request):
+    if request.method == 'POST':
+        form = RasterForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('files')
+    else:
+        form = RasterForm()
+    return render(request,'upload_Raster.html', {
+        'form': form
+    })
+

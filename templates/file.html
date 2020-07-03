@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block Title %}
+	Files | WebGis Geofisika
+{% endblock Title %}
+
+{% block Contents %}
+<h2>Shapefile</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Region</th>
+            <th>Download</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for shapefile in shp %}
+            <tr>
+                <td>{{ shapefile.title }}</td>
+                <td>{{ shapefile.author }}</td>
+                <td>{{ shapefile.region }}</td>
+                <td>
+                    <a href="{{ shapefile.shp.url }}" class="btn btn-primary btn-sm">Download</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Raster</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Region</th>
+            <th>Download</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for raster in raster %}
+            <tr>
+                <td>{{ raster.title }}</td>
+                <td>{{ raster.author }}</td>
+                <td>{{ raster.region }}</td>
+                <td>{{ raster.geotiff }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock Contents %}

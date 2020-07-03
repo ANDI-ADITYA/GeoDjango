@@ -3,9 +3,18 @@ from django.views.generic import TemplateView
 from django.core.serializers import serialize
 from django.http import HttpResponse
 from .models import Point, Shapefile, Lines
+from users import models as user_models
 
 class HomePageView(TemplateView):
 	template_name='index.html'
+
+def file_list(request):
+	shp = user_models.shapefile.objects.all()
+	raster = user_models.raster.objects.all()
+	return render(request, 'file.html', {
+		'shp': shp,
+		'raster': raster
+	})
 
 def point_datasets(request):
 	points = serialize('geojson', Point.objects.all())

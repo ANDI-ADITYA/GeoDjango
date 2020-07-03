@@ -36,7 +36,7 @@
 					}
 				},
 			});
-			Point.addTo(map);
+			
 			var Shape = new L.GeoJSON.AJAX("{% url 'maps:data_shape' %}",{
 				onEachFeature: function(feature, layer){
 					if (feature.properties && feature.properties.objname.toString()){
@@ -44,7 +44,7 @@
 					}
 				},
 			});
-			Shape.addTo(map);
+			
 			var Line = new L.GeoJSON.AJAX("{% url 'maps:data_line' %}",{
 				onEachFeature: function(feature, layer){
 					if (feature.properties && feature.properties.name.toString()){
@@ -52,8 +52,7 @@
 					}
 				},
 			});
-			Line.addTo(map);
-
+			
 			var baseLayers = {
 				"Streets": street,
 				"Satellite": satellite
