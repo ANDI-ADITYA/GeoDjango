@@ -37,10 +37,10 @@
 				},
 			});
 			
-			var Shape = new L.GeoJSON.AJAX("{% url 'maps:data_shape' %}",{
+			var Poly = new L.GeoJSON.AJAX("{% url 'maps:data_poly' %}",{
 				onEachFeature: function(feature, layer){
-					if (feature.properties && feature.properties.objname.toString()){
-						layer.bindPopup(feature.properties.objname.toString());
+					if (feature.properties && feature.properties.title.toString()){
+						layer.bindPopup(feature.properties.title.toString());
 					}
 				},
 			});
@@ -61,7 +61,7 @@
 				"Layers": {
 					"Building": Point,
 					"Streets": Line,
-					"Shape": Shape
+					"Polygon": Poly
 				}
 			};
 			L.control.groupedLayers(baseLayers, overlayMaps).addTo(map);

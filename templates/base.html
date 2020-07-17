@@ -13,13 +13,14 @@
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/theme.css' %}">
 	<style type="text/css">
-		#gis {height: 100%; position: fixed; width: 100%;}
+		#gis {height: 90%; position: fixed; width: 100%;}
 	</style>
 	
 
 	<title>{% block Title %}{% endblock Title %}</title>
 </head>
 <body onload="initialize()">
+{% include 'snippets/navbar.html' %}
 <!-- Contents -->
 	<div class="col-md-8 fixed-top">
 		{% if messages %}

@@ -1,0 +1,72 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{{ form.media }}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Upload Polygon | WebGis Geofisika</title>
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+	<script src="{% static 'js/mapwidget.js' %}"></script>
+</head>
+
+
+<body>
+{% include 'snippets/navbar.html' %}
+
+{% if user.is_authenticated %}	
+<div class="container jumbotron mt-5">
+	<h2 class="display-4">Upload Polygon</h2>
+	<hr class="my-3">
+
+	<div class="form-group">
+		<form method="POST" id="polygon_form" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="field">
+				<label class="label">Title</label>
+				<div class="control">
+					{% render_field form.title class="form-control" placeholder="Insert Title" %}
+				</div>
+			</div>
+			<div class="field">
+				<label class="label">Author</label>
+				<div class="control">
+					{% render_field form.author class="form-control" placeholder="Insert Author" %}
+				</div>
+			</div>
+			<div class="field">
+				<label class="label">Region</label>
+				<div class="control">
+					{% render_field form.region class="form-control" placeholder="Insert Region" %}
+				</div>
+			</div>
+			<div class="field">
+				<label class="label">Polygon</label>
+				<div class="leaflet-control-layers-expanded">
+					{% render_field form.shp class="form-control" id="gis" %}
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Upload Polygon File</button>
+		</form>
+	</div>
+</div>
+{% else %}
+<div class="container jumbotron mt-5">
+    <h2 class="display-4">You must login first!!!</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+</div>
+{% endif %}
+
+<script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+<script src="{% static 'vendor/popper/popper.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

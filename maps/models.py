@@ -14,20 +14,20 @@ class Point(models.Model):
 
 	class Meta:
 		ordering = ('name',)
-		verbose_name_plural = "Points"
+		verbose_name_plural = "Points" 
 
-class Shapefile(models.Model):
-	objname = models.CharField(max_length=100)
-	wadmkk = models.CharField(max_length=100)
-	wadmpr = models.CharField(max_length=100)
+class Polygon(models.Model):
+	title = models.CharField(max_length=100)
+	author = models.CharField(max_length=100)
+	region = models.CharField(max_length=100)
 	shp = models.MultiPolygonField(srid=4326)
 
 	def __unicode__(self):
-		return self.objname
+		return self.title
 
-	class Meta:
-		ordering = ('objname',)
-		verbose_name_plural = "Shapefile"
+		class Meta:
+			ordering = ('title',)
+			verbose_name_plural = "Polygon"
 
 class Lines(models.Model):
 	name = models.CharField(max_length=100)

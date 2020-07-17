@@ -1,10 +1,8 @@
 from django import forms
+import floppyforms as forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import (
-    shapefile,
-    raster
-)
+
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -13,13 +11,25 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2'] 
 
-class ShapefileForm(forms.ModelForm):
-    class Meta:
-        model = shapefile
-        fields = ('title', 'author', 'region', 'shp')
+class MultiPolygonWidget(forms.gis.MultiPolygonWidget, forms.gis.BaseOsmWidget):
+    map_width = 1000
+    map_height = 500
+    template_name = 'snippets/osm.html'
 
-class RasterForm(forms.ModelForm):
-    class Meta:
-        model = raster
-        fields = ('title', 'author', 'region', 'geotiff')
+    class Media:
+        js = (
+            'http://openlayers.org/dev/OpenLayers.js',
+            'floppyforms/js/MapWidget.js',
+        )
+
+class RawPolygonForm(forms.Form):
+    title = forms.CharField()
+    author = forms.CharField()
+    region = forms. CharField()
+    shp = forms.gis.MultiPolygonField(widget=MultiPolygonWidget(attrs={
+        'id': 'gis',
+        'style': 'width: 100%;'
+    }))
+    # TODO: Define form fields here
+
 

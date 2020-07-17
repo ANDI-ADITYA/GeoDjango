@@ -45,7 +45,9 @@
                 <td>{{ raster.title }}</td>
                 <td>{{ raster.author }}</td>
                 <td>{{ raster.region }}</td>
-                <td>{{ raster.geotiff }}</td>
+                <td>
+                    <a href="{{ shapefile.geotiff.url }}" class="btn btn-primary btn-sm">Download</a>
+                </td>
             </tr>
         {% endfor %}
     </tbody>

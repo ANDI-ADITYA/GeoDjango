@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'floppyforms',
     'leaflet',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +83,7 @@ WSGI_APPLICATION = 'home.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'projectgis',
+        'NAME': 'geodatabase',
         'USER': 'postgres',
         'PASSWORD': 'ARAditya22',
         'HOST': 'localhost',

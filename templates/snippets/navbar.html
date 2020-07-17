@@ -1,6 +1,6 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+<nav class="navbar navbar-expand-md navbar-dark bg-secondary" style="height: 10%;">
   <div class="container">
     <a class="navbar-brand" href="#">
       <img  src="{% static "img/logo.png" %}" height="40px" alt="">
@@ -16,6 +16,16 @@
           <a class="nav-link" href="/">Home</a>
         </li>
       </ul>
+      <div class="nav-item dropdown ml-auto">
+        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Upload
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/uploadpoly">Polygon</a>
+            <a class="dropdown-item" href="/">Line</a>
+            <a class="dropdown-item" href="/">Point</a>
+        </div>
+      </div>
     {% else %}
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">

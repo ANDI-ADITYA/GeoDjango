@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
+from maps.models import Polygon
 from .forms import (
     UserRegisterForm,
-    ShapefileForm,
-    RasterForm
+    RawPolygonForm
 )
 
 # Create your views here.
@@ -20,27 +20,17 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
-def uploadshapefile(request):
-    if request.method == 'POST':
-        form = ShapefileForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('files')
-    else:
-        form = ShapefileForm()
-    return render(request,'upload_Shapefile.html', {
-        'form': form
-    })
-
-def uploadraster(request):
-    if request.method == 'POST':
-        form = RasterForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('files')
-    else:
-        form = RasterForm()
-    return render(request,'upload_Raster.html', {
-        'form': form
-    })
+def uploadpolygon(request):
+    polygonform = RawPolygonForm()
+    if request.method == "POST":
+        polygonform = RawPolygonForm(request.POST)
+        if polygonform.is_valid():
+            print(polygonform.cleaned_data)
+            Polygon.objects.create(**polygonform.cleaned_data)
+        else:
+            print(polygonform.errors)
+    context = {
+            "form": polygonform
+        }
+    return render(request,'upload_Polygon.html', context)
 

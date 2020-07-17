@@ -1,0 +1,11 @@
+{% extends "snippets/openlayers.html" %}
+
+{% block options %}{{ block.super }}
+options['mouse_position'] = true;
+options['default_lon'] = 116;
+options['default_lat'] = 1;
+options['base_layer'] = new OpenLayers.Layer.OSM.Mapnik(
+    "OpenStreetMap (Mapnik)",
+    {numZoomLevels: 12,
+	units: 'm'});
+{% endblock %}
