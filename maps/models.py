@@ -4,6 +4,7 @@ from django.contrib.gis.db import models
 from django.utils.text import slugify
 # Create your models here.
 
+##------ POINT -------##
 class Point(models.Model):
 	name = models.CharField(max_length=100)
 	category = models.CharField(max_length=50)
@@ -16,6 +17,7 @@ class Point(models.Model):
 		ordering = ('name',)
 		verbose_name_plural = "Points" 
 
+##------ POLYGON -------##
 class Polygon(models.Model):
 	title = models.CharField(max_length=100)
 	author = models.CharField(max_length=100)
@@ -29,14 +31,17 @@ class Polygon(models.Model):
 			ordering = ('title',)
 			verbose_name_plural = "Polygon"
 
-class Lines(models.Model):
+## ------ STREET -------##
+class Street(models.Model):
 	name = models.CharField(max_length=100)
 	category = models.CharField(max_length=50)
-	lines = models.LineStringField(srid=4326)
+	date = models.DateField()
+	condition = models.CharField(max_length=100)
+	lines = models.MultiLineStringField (srid=4326)
 
 	def __unicode__(self):
 		return self.name
 
 	class Meta:
 		ordering = ('name',)
-		verbose_name_plural = "Lines"
+		verbose_name_plural = "Street"

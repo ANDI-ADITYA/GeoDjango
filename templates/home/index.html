@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "home/base.html" %}
 {% load leaflet_tags %}
 
 {% block Title %}
@@ -45,7 +45,7 @@
 				},
 			});
 			
-			var Line = new L.GeoJSON.AJAX("{% url 'maps:data_line' %}",{
+			var Street = new L.GeoJSON.AJAX("{% url 'maps:data_street' %}",{
 				onEachFeature: function(feature, layer){
 					if (feature.properties && feature.properties.name.toString()){
 						layer.bindPopup(feature.properties.name.toString());
@@ -60,7 +60,7 @@
 			var overlayMaps = {
 				"Layers": {
 					"Building": Point,
-					"Streets": Line,
+					"Streets": Street,
 					"Polygon": Poly
 				}
 			};

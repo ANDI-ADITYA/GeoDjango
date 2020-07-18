@@ -8,6 +8,6 @@ urlpatterns = [
 	path('', maps_views.HomePageView.as_view(), name='home-maps'),	
 	path('data-point/', maps_views.point_datasets, name = 'data_point'),
 	path('data-poly/', maps_views.polygon_datasets, name='data_poly'),
-	path('data-line/', maps_views.lines_datasets, name='data_line')
+	path('data-street/', maps_views.street_datasets, name='data_street')
 
 ]
