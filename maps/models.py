@@ -22,7 +22,7 @@ class Polygon(models.Model):
 	title = models.CharField(max_length=100)
 	author = models.CharField(max_length=100)
 	region = models.CharField(max_length=100)
-	shp = models.MultiPolygonField(srid=4326)
+	shp = models.MultiPolygonField(srid=4326, geography=True)
 
 	def __unicode__(self):
 		return self.title
@@ -37,7 +37,7 @@ class Street(models.Model):
 	category = models.CharField(max_length=50)
 	date = models.DateField()
 	condition = models.CharField(max_length=100)
-	lines = models.MultiLineStringField (srid=4326)
+	lines = models.MultiLineStringField (srid=4326, geography=True)
 
 	def __unicode__(self):
 		return self.name

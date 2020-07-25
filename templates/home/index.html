@@ -1,9 +1,14 @@
 {% extends "home/base.html" %}
+{% load static %}
 {% load leaflet_tags %}
 
 {% block Title %}
 	WebGis Geofisika
 {% endblock Title %}
+
+{% block Leaflet_css %}
+
+{% endblock Leaflet_css %}
 
 {% block Heading %}
 
@@ -29,30 +34,27 @@
 				zoomOffset: -1,
 				accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NDg1bDA1cjYzM280NHJ5NzlvNDMifQ.d6e-nNyBDtmQCVwVNivz7A'
 			});
-			var Point = new L.GeoJSON.AJAX("{% url 'maps:data_point' %}",{
+			
+			var Point = new L.GeoJSON.AJAX("{% url 'maps:data_points' %}",{
 				onEachFeature: function(feature, layer){
-					if (feature.properties && feature.properties.name.toString()){
-						layer.bindPopup(feature.properties.name.toString());
-					}
+					layer.bindPopup(
+						'<p> Nama:'+feature.properties.name.toString()+'</p> <p> Category:'+feature.properties.category.toString()+'</p>');
 				},
 			});
+			Point.addTo(map);
 			
 			var Poly = new L.GeoJSON.AJAX("{% url 'maps:data_poly' %}",{
 				onEachFeature: function(feature, layer){
-					if (feature.properties && feature.properties.title.toString()){
-						layer.bindPopup(feature.properties.title.toString());
-					}
+					layer.bindPopup('<p> Name: '+feature.properties.title.toString()+'</p> <p> Author: '+feature.properties.author.toString()+'</p> <p> Region: '+feature.properties.region.toString()+'</p>');
 				},
 			});
-			
+
 			var Street = new L.GeoJSON.AJAX("{% url 'maps:data_street' %}",{
 				onEachFeature: function(feature, layer){
-					if (feature.properties && feature.properties.name.toString()){
-						layer.bindPopup(feature.properties.name.toString());
-					}
+					layer.bindPopup('<p> Name: '+feature.properties.name.toString()+'</p> <p> Author: '+feature.properties.category.toString()+'</p> <p> Region: '+feature.properties.condition.toString()+'</p>');
 				},
 			});
-			
+
 			var baseLayers = {
 				"Streets": street,
 				"Satellite": satellite
@@ -69,5 +71,7 @@
 	</script>
 	{% leaflet_map "gis" callback="window.map_layers" %}
 {% endblock Contents %}
+
+
 
 
