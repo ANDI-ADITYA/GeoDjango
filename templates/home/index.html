@@ -17,6 +17,7 @@
 {% block Contents %}
 	<script> 
 		function map_layers(map,option){
+		// Add base map tiles from OpenstreetMap
 			var street = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 				maxZoom: 20,
@@ -34,27 +35,26 @@
 				zoomOffset: -1,
 				accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NDg1bDA1cjYzM280NHJ5NzlvNDMifQ.d6e-nNyBDtmQCVwVNivz7A'
 			});
-			
+		
+		// Add data map from database with using L.GeoJSON.AJAX plugin.
 			var Point = new L.GeoJSON.AJAX("{% url 'maps:data_points' %}",{
 				onEachFeature: function(feature, layer){
-					layer.bindPopup(
-						'<p> Nama:'+feature.properties.name.toString()+'</p> <p> Category:'+feature.properties.category.toString()+'</p>');
+					layer.bindPopup('<div class="container-fluid rounded-lg p-3 my-3 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.name.toString()+'</td></tr> <tr><td>Category</td> <td>: '+feature.properties.category.toString()+'</td></tr></table></div>');
 				},
 			});
 			Point.addTo(map);
-			
 			var Poly = new L.GeoJSON.AJAX("{% url 'maps:data_poly' %}",{
 				onEachFeature: function(feature, layer){
-					layer.bindPopup('<p> Name: '+feature.properties.title.toString()+'</p> <p> Author: '+feature.properties.author.toString()+'</p> <p> Region: '+feature.properties.region.toString()+'</p>');
+					layer.bindPopup('<div class="container-fluid rounded-lg p-3 my-3 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.title.toString()+'</td></tr> <tr><td>Author</td> <td>: '+feature.properties.author.toString()+'</td></tr> <tr><td>Region</td> <td>: '+feature.properties.region.toString()+'</td></tr></table></div>');
 				},
 			});
-
 			var Street = new L.GeoJSON.AJAX("{% url 'maps:data_street' %}",{
 				onEachFeature: function(feature, layer){
-					layer.bindPopup('<p> Name: '+feature.properties.name.toString()+'</p> <p> Author: '+feature.properties.category.toString()+'</p> <p> Region: '+feature.properties.condition.toString()+'</p>');
+					layer.bindPopup('<div class="container-fluid rounded-lg p-3 my-3 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.name.toString()+'</td></tr> <tr><td>Category</td> <td>: '+feature.properties.category.toString()+'</td></tr> <tr><td>Region</td> <td>: '+feature.properties.condition.toString()+'</td></tr></table></div>');
 				},
 			});
 
+		// Add control layers
 			var baseLayers = {
 				"Streets": street,
 				"Satellite": satellite
@@ -69,6 +69,7 @@
 			L.control.groupedLayers(baseLayers, overlayMaps).addTo(map);
 		}
 	</script>
+	
 	{% leaflet_map "gis" callback="window.map_layers" %}
 {% endblock Contents %}
 

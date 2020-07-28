@@ -7,3 +7,8 @@ html, body, #gis {
     font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
+.custom .leaflet-popup-tip,
+.custom .leaflet-popup-content-wrapper {
+    background: #e93434;
+    color: #ffffff;
+}

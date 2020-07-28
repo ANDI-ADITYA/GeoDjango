@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
+from django.views.generic.edit import UpdateView
 from maps.models import (
     Point,
     Polygon,
@@ -25,6 +26,16 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
+
+class MapUpdateView(UpdateView):
+    model = Point
+    fields = [
+        'name',
+        'category',
+        'points',
+    ]
+    template_name_suffix = '_update_form'
+
 
 ##------ POINT -------##
 def uploadpoint(request):
