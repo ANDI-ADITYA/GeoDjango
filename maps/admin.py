@@ -1,17 +1,17 @@
 from django.contrib import admin
-from .models import Point, Polygon, Street
+from .models import Point, Administrasi, Street
 from leaflet.admin import LeafletGeoAdmin
 # Register your models here.
 
 class PointAdmin(LeafletGeoAdmin):
 	list_display = ('name','category')
 
-class PolyAdmin(LeafletGeoAdmin):
-	list_display = ('title','author','region')
+class AdmAdmin(LeafletGeoAdmin):
+	list_display = ('namobj','wadmpr','remark',)
 
 class StreetAdmin(LeafletGeoAdmin):
 	list_display = ('name','category','date')
 
 admin.site.register(Point, PointAdmin)
-admin.site.register(Polygon, PolyAdmin)
+admin.site.register(Administrasi, AdmAdmin)
 admin.site.register(Street, StreetAdmin)

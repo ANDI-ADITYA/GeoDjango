@@ -27,28 +27,56 @@
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			<div class="field">
-				<label class="label">Title</label>
+				<label class="label">Object Name</label>
 				<div class="control">
-					{% render_field form.title class="form-control" placeholder="Insert Title" %}
+					{% render_field form.namobj class="form-control" placeholder="Insert Object Name" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Author</label>
+				<label class="label">Note</label>
 				<div class="control">
-					{% render_field form.author class="form-control" placeholder="Insert Author" %}
+					{% render_field form.remark class="form-control" placeholder="Insert Note" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Region</label>
+				<label class="label">Layer Code</label>
 				<div class="control">
-					{% render_field form.region class="form-control" placeholder="Insert Region" %}
+					{% render_field form.lcode class="form-control" placeholder="Insert Layer Code" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">District Name</label>
+				<div class="control">
+					{% render_field form.wadmkk class="form-control" placeholder="Insert District Name" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Province Name</label>
+				<div class="control">
+					{% render_field form.wadmpr class="form-control" placeholder="Insert Province Name" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">District Capital Name</label>
+				<div class="control">
+					{% render_field form.wiadkk class="form-control" placeholder="Insert District Capital Name" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Area (Hectares)</label>
+				<div class="control">
+					{% render_field form.shp_area class="form-control" placeholder="Insert Area" %}
 				</div>
 			</div>
 			<br>
 			<button style="margin-right: 20px;" type="submit" class="btn btn-success">Save</button>
-			<a href="{% url 'list_polygon' %}">
+			<a href="{% url 'list_administrasi' %}">
                 <input style="width: 50px;" class="btn btn-danger" type="button" value="No">
             </a>
 		</form>

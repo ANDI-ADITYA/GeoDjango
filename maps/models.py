@@ -18,18 +18,22 @@ class Point(models.Model):
 		verbose_name_plural = "Points" 
 
 ##------ POLYGON -------##
-class Polygon(models.Model):
-	title = models.CharField(max_length=100)
-	author = models.CharField(max_length=100)
-	region = models.CharField(max_length=100)
+class Administrasi(models.Model):
+	namobj = models.CharField(max_length=100)
+	remark = models.CharField(max_length=250)
+	lcode = models.CharField(max_length=20)
+	wadmkk = models.CharField(max_length=100)
+	wadmpr = models.CharField(max_length=100)
+	wiadkk = models.CharField(max_length=100)
+	shp_area = models.FloatField()
 	shp = models.MultiPolygonField(srid=4326)
 
 	def __unicode__(self):
-		return self.title
+		return self.namobj
 
 		class Meta:
-			ordering = ('title',)
-			verbose_name_plural = "Polygon"
+			ordering = ('namobj',)
+			verbose_name_plural = "Administrasi"
 
 ## ------ STREET -------##
 class Street(models.Model):

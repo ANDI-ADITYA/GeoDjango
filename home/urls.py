@@ -20,10 +20,10 @@ urlpatterns = [
     path('point/update/<int:pk>', user_views.PointAttrUpdateView.as_view(), name='attr_point'),
     path('point/delete/<int:pk>', user_views.PointDeleteView.as_view(),name='delete_point'),
     
-    path('polygon/', user_views.PolygonListView, name='list_polygon'),
-	path('polygon/upload', user_views.uploadpolygon, name='upload_polygon'),
-    path('polygon/update/<int:pk>', user_views.PolygonAttrUpdateView.as_view(), name='attr_polygon'),
-    path('polygon/delete/<int:pk>', user_views.PolygonDeleteView.as_view(),name='delete_polygon'),
+    path('administrasi/', user_views.AdministrasiListView, name='list_administrasi'),
+	path('administrasi/upload', user_views.uploadadministrasi, name='upload_administrasi'),
+    path('administrasi/update/<int:pk>', user_views.AdministrasiAttrUpdateView.as_view(), name='attr_administrasi'),
+    path('administrasi/delete/<int:pk>', user_views.AdministrasiDeleteView.as_view(),name='delete_administrasi'),
     
     path('street/', user_views.StreetListView, name='list_street'),
     path('street/upload', user_views.uploadstreet, name='upload_street'),

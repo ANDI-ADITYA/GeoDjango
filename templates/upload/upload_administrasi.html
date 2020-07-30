@@ -20,20 +20,20 @@
 
 {% if user.is_authenticated %}	
 <div class="container jumbotron mt-5">
-	<h2 class="display-4">Upload Polygon</h2>
+	<h2 class="display-4">Upload Administrative</h2>
 	<hr class="my-3">
 
 	<div class="form-group">
-		<form method="POST" id="polygon_form" enctype="multipart/form-data">
+		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			<table style="width: 100%;">
 				<tbody>
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">Title</label>
+								<label class="label">Object Name</label>
 								<div class="control">
-									{% render_field form.title class="form-control" placeholder="Insert Title" %}
+									{% render_field form.namobj class="form-control" placeholder="Insert Object Name" %}
 								</div>
 							</div>
 						</td>
@@ -41,9 +41,9 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">Author</label>
+								<label class="label">Note</label>
 								<div class="control">
-									{% render_field form.author class="form-control" placeholder="Insert Author" %}
+									{% render_field form.remark class="form-control" placeholder="Insert Note" %}
 								</div>
 							</div>
 						</td>
@@ -51,9 +51,49 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">Region</label>
+								<label class="label">Layer Code</label>
 								<div class="control">
-									{% render_field form.region class="form-control" placeholder="Insert Region" %}
+									{% render_field form.lcode class="form-control" placeholder="Insert Layer Code" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">District Name</label>
+								<div class="control">
+									{% render_field form.wadmkk class="form-control" placeholder="Insert District Name" %}
+								</div>
+							</div>
+						</td>
+					</tr>	
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">Province Name</label>
+								<div class="control">
+									{% render_field form.wadmpr class="form-control" placeholder="Insert Province Name" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">District Capital Name</label>
+								<div class="control">
+									{% render_field form.wiadkk class="form-control" placeholder="Insert District Capital Name" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">Area (Hectares)</label>
+								<div class="control">
+									{% render_field form.shp_area class="form-control" placeholder="Insert Area" %}
 								</div>
 							</div>
 						</td>
@@ -61,7 +101,7 @@
 					<tr>
 						<td style="width: 500px;">
 							<div class="field">
-								<label class="label">Polygon</label>
+								<label class="label">Administrative</label>
 								<div style="width: 100%; margin-left: 4%;" class="leaflet-control-layers-expanded">
 									{% render_field form.shp class="form-control" id="gis" %}
 								</div>
@@ -71,7 +111,7 @@
 					<tr>
 						<td>
 							<button style="margin-right: 20px;" type="submit" class="btn btn-primary">Save</button>
-								<a href="{% url 'list_polygon' %}">
+								<a href="{% url 'list_administrasi' %}">
 									<input style="width: 50px;" class="btn btn-danger" type="button" value="Back">
 								</a>
 						</td>

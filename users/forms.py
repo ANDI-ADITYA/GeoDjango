@@ -54,11 +54,15 @@ class RawPointForm(forms.Form):
         'style': 'width: 100%;'
     }))
 
-##------ POLYGON -------##
-class RawPolygonForm(forms.Form):
-    title = forms.CharField()
-    author = forms.CharField()
-    region = forms. CharField()
+##------ ADMINISTRASI -------##
+class RawAdministrasiForm(forms.Form):
+    namobj = forms.CharField()
+    remark = forms.CharField()
+    lcode = forms.CharField()
+    wadmkk = forms.CharField()
+    wadmpr = forms.CharField()
+    wiadkk = forms.CharField()
+    shp_area = forms.FloatField()
     shp = forms.gis.MultiPolygonField(widget=MultiPolygonWidget(attrs={
         'id': 'gis',
         'style': 'width: 100%;'

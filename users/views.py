@@ -5,13 +5,13 @@ from django.views.generic import DeleteView
 from django.views.generic.edit import UpdateView
 from maps.models import (
     Point,
-    Polygon,
+    Administrasi,
     Street
 )
 from .forms import (
     UserRegisterForm,
     RawPointForm,
-    RawPolygonForm,
+    RawAdministrasiForm,
     RawStreetForm
 )
 
@@ -65,41 +65,45 @@ class PointDeleteView(DeleteView):
     success_url = "/point/"
 
 
-# Polygon-->
+# Administrasi-->
 # List-->
-def PolygonListView(request):
-    polygon = Polygon.objects.all()
-    return render(request,'maps/polygon_list.html',{'polygon':polygon})
+def AdministrasiListView(request):
+    administrasi = Administrasi.objects.all()
+    return render(request,'maps/administrasi_list.html',{'administrasi':administrasi})
 # Upload-->
-def uploadpolygon(request):
-    polygonform = RawPolygonForm()
+def uploadadministrasi(request):
+    administrasiform = RawAdministrasiForm()
     if request.method == "POST":
-        polygonform = RawPolygonForm(request.POST)
-        if polygonform.is_valid():
-            print(polygonform.cleaned_data)
-            Polygon.objects.create(**polygonform.cleaned_data)
+        administrasiform = RawAdministrasiForm(request.POST)
+        if administrasiform.is_valid():
+            print(administrasiform.cleaned_data)
+            Administrasi.objects.create(**administrasiform.cleaned_data)
             return redirect('/')
         else:
-            print(polygonform.errors)
+            print(administrasiform.errors)
     context = {
-            "form": polygonform
+            "form": administrasiform
         }
-    return render(request,'upload/upload_Polygon.html', context)
+    return render(request,'upload/upload_administrasi.html', context)
 # Update Attribute-->
-class PolygonAttrUpdateView(UpdateView):
-    model = Polygon
+class AdministrasiAttrUpdateView(UpdateView):
+    model = Administrasi
     fields = [
-        'title',
-        'author',
-        'region',
+        'namobj',
+        'remark',
+        'lcode',
+        'wadmkk',
+        'wadmpr',
+        'wiadkk',
+        'shp_area',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
 # Delete-->
-class PolygonDeleteView(DeleteView):
-    model = Polygon
-    template_name = "maps/polygon_delete.html"
-    success_url = "/polygon/"
+class AdministrasiDeleteView(DeleteView):
+    model = Administrasi
+    template_name = "maps/administrasi_delete.html"
+    success_url = "/administrasi/"
 
 
 # Street-->

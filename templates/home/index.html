@@ -39,18 +39,18 @@
 		// Add data map from database with using L.GeoJSON.AJAX plugin.
 			var Point = new L.GeoJSON.AJAX("{% url 'maps:data_points' %}",{
 				onEachFeature: function(feature, layer){
-					layer.bindPopup('<div class="container-fluid rounded-lg p-3 my-3 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.name.toString()+'</td></tr> <tr><td>Category</td> <td>: '+feature.properties.category.toString()+'</td></tr></table></div>');
+					layer.bindPopup('<div class="container-fluid rounded-lg p-1 my-1 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.name.toString()+'</td></tr> <tr><td>Category</td> <td>: '+feature.properties.category.toString()+'</td></tr></table></div>');
 				},
 			});
 			Point.addTo(map);
-			var Poly = new L.GeoJSON.AJAX("{% url 'maps:data_poly' %}",{
+			var Administrasi = new L.GeoJSON.AJAX("{% url 'maps:data_administrasi' %}",{
 				onEachFeature: function(feature, layer){
-					layer.bindPopup('<div class="container-fluid rounded-lg p-3 my-3 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.title.toString()+'</td></tr> <tr><td>Author</td> <td>: '+feature.properties.author.toString()+'</td></tr> <tr><td>Region</td> <td>: '+feature.properties.region.toString()+'</td></tr></table></div>');
+					layer.bindPopup('<div class="container-fluid rounded-lg p-1 my-1 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>District</td> <td>: '+feature.properties.wadmkk.toString()+'</td></tr> <tr><td>Province</td> <td>: '+feature.properties.wadmpr.toString()+'</td></tr> <tr><td>District Capital</td> <td>: '+feature.properties.wiadkk.toString()+'</td></tr> <tr><td>Area (Hectares)</td> <td>: '+feature.properties.shp_area.toString()+' ha</td></tr></table></div>');
 				},
 			});
 			var Street = new L.GeoJSON.AJAX("{% url 'maps:data_street' %}",{
 				onEachFeature: function(feature, layer){
-					layer.bindPopup('<div class="container-fluid rounded-lg p-3 my-3 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.name.toString()+'</td></tr> <tr><td>Category</td> <td>: '+feature.properties.category.toString()+'</td></tr> <tr><td>Region</td> <td>: '+feature.properties.condition.toString()+'</td></tr></table></div>');
+					layer.bindPopup('<div class="container-fluid rounded-lg p-1 my-1 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.name.toString()+'</td></tr> <tr><td>Category</td> <td>: '+feature.properties.category.toString()+'</td></tr> <tr><td>Region</td> <td>: '+feature.properties.condition.toString()+'</td></tr></table></div>');
 				},
 			});
 
@@ -63,7 +63,7 @@
 				"Layers": {
 					"Building": Point,
 					"Streets": Street,
-					"Polygon": Poly
+					"Administrasi": Administrasi
 				}
 			};
 			L.control.groupedLayers(baseLayers, overlayMaps).addTo(map);
