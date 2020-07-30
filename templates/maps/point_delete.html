@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete | Webgis Geofisika</title>
+    {% include 'snippets/vendor.html' %}
+</head>
+<body>
+    {% include 'snippets/navbar.html' %}
+    {% if user.is_authenticated %}
+    <div class="container jumbotron mt-5">
+        <div class="container">
+            <form method="POST">
+                {% csrf_token %}
+                <br>
+                <p>Do you want to delete this <b>{{object.name}}</b>?</p>
+                <input style="width: 100px; margin-right: 50px;" class="btn btn-warning" type="submit" value="Delete">
+                <a href="{% url 'list_point' %}">
+                    <input style="width: 100px;" class="btn btn-success" type="button" value="No">
+                </a>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="container jumbotron mt-5">
+        <h2 class="display-4">You must login first!!!</h2>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                <a href="{% url 'login' %}">Log In Again</a>
+            </small>
+        </div>
+    </div>
+    {% endif %}
+    <script src="{% static 'vendor/popper/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

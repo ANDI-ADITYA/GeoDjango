@@ -27,7 +27,7 @@
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			<div class="field">
-				<label class="label">Name</label>
+				<label class="label">Street Name</label>
 				<div class="control">
 					{% render_field form.name class="form-control" placeholder="Insert Name" %}
 				</div>
@@ -40,8 +40,22 @@
 				</div>
 			</div>
 			<br>
+			<div class="field">
+				<label class="label">Date</label>
+				<div class="control">
+					{% render_field form.date class="form-control" placeholder="Insert Date" %}
+				</div>
+			</div>
+			<br>
+            <div class="field">
+				<label class="label">Condition</label>
+				<div class="control">
+					{% render_field form.condition class="form-control" placeholder="Insert Condition" %}
+				</div>
+			</div>
+			<br>
 			<button style="margin-right: 20px;" type="submit" class="btn btn-success">Save</button>
-			<a href="{% url 'list_point' %}">
+			<a href="{% url 'list_street' %}">
                 <input style="width: 50px;" class="btn btn-danger" type="button" value="No">
             </a>
 		</form>

@@ -27,21 +27,28 @@
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			<div class="field">
-				<label class="label">Name</label>
+				<label class="label">Title</label>
 				<div class="control">
-					{% render_field form.name class="form-control" placeholder="Insert Name" %}
+					{% render_field form.title class="form-control" placeholder="Insert Title" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Category</label>
+				<label class="label">Author</label>
 				<div class="control">
-					{% render_field form.category class="form-control" placeholder="Insert Category" %}
+					{% render_field form.author class="form-control" placeholder="Insert Author" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Region</label>
+				<div class="control">
+					{% render_field form.region class="form-control" placeholder="Insert Region" %}
 				</div>
 			</div>
 			<br>
 			<button style="margin-right: 20px;" type="submit" class="btn btn-success">Save</button>
-			<a href="{% url 'list_point' %}">
+			<a href="{% url 'list_polygon' %}">
                 <input style="width: 50px;" class="btn btn-danger" type="button" value="No">
             </a>
 		</form>

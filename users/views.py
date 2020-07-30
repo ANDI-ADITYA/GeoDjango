@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
+from django.views.generic import DeleteView
 from django.views.generic.edit import UpdateView
 from maps.models import (
     Point,
@@ -14,7 +15,7 @@ from .forms import (
     RawStreetForm
 )
 
-# Create your views here.
+# Register-->
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -27,17 +28,13 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
-class MapUpdateView(UpdateView):
-    model = Point
-    fields = [
-        'name',
-        'category',
-        'points',
-    ]
-    template_name_suffix = '_update_form'
 
-
-##------ POINT -------##
+# Point-->
+# List-->
+def PointListView(request):
+    point = Point.objects.all()
+    return render(request,'maps/point_list.html',{'point':point})
+# Upload-->
 def uploadpoint(request):
     pointform = RawPointForm()
     if request.method == "POST":
@@ -45,14 +42,35 @@ def uploadpoint(request):
         if pointform.is_valid():
             print(pointform.cleaned_data)
             Point.objects.create(**pointform.cleaned_data)
+            return redirect('/')
         else:
             print(pointform.errors)
     context = {
             "form": pointform
         }
     return render(request,'upload/upload_Point.html', context)
+# Update Attribute-->
+class PointAttrUpdateView(UpdateView):
+    model = Point
+    fields = [
+        'name',
+        'category',
+    ]
+    template_name_suffix = '_update_form'
+    success_url = '/'
+# Delete-->
+class PointDeleteView(DeleteView):
+    model = Point
+    template_name = "maps/point_delete.html"
+    success_url = "/point/"
 
-##------ POLYGON -------##
+
+# Polygon-->
+# List-->
+def PolygonListView(request):
+    polygon = Polygon.objects.all()
+    return render(request,'maps/polygon_list.html',{'polygon':polygon})
+# Upload-->
 def uploadpolygon(request):
     polygonform = RawPolygonForm()
     if request.method == "POST":
@@ -60,14 +78,36 @@ def uploadpolygon(request):
         if polygonform.is_valid():
             print(polygonform.cleaned_data)
             Polygon.objects.create(**polygonform.cleaned_data)
+            return redirect('/')
         else:
             print(polygonform.errors)
     context = {
             "form": polygonform
         }
     return render(request,'upload/upload_Polygon.html', context)
+# Update Attribute-->
+class PolygonAttrUpdateView(UpdateView):
+    model = Polygon
+    fields = [
+        'title',
+        'author',
+        'region',
+    ]
+    template_name_suffix = '_update_form'
+    success_url = '/'
+# Delete-->
+class PolygonDeleteView(DeleteView):
+    model = Polygon
+    template_name = "maps/polygon_delete.html"
+    success_url = "/polygon/"
 
-## ------ STREET -------##
+
+# Street-->
+# List-->
+def StreetListView(request):
+    street = Street.objects.all()
+    return render(request,'maps/street_list.html',{'street':street})
+# Upload-->
 def uploadstreet(request):
     pointform = RawStreetForm()
     if request.method == "POST":
@@ -75,10 +115,26 @@ def uploadstreet(request):
         if pointform.is_valid():
             print(pointform.cleaned_data)
             Street.objects.create(**pointform.cleaned_data)
+            return redirect('/')
         else:
             print(pointform.errors)
     context = {
             "form": pointform
         }
     return render(request,'upload/upload_Street.html', context)
-
+# Update Attribute-->
+class StreetAttrUpdateView(UpdateView):
+    model = Street
+    fields = [
+        'name',
+        'category',
+        'date',
+        'condition',
+    ]
+    template_name_suffix = '_update_form'
+    success_url = '/'
+# Delete-->
+class StreetDeleteView(DeleteView):
+    model = Street
+    template_name = "maps/street_delete.html"
+    success_url = "/street/"

@@ -26,31 +26,58 @@
 	<div class="form-group">
 		<form method="POST" id="polygon_form" enctype="multipart/form-data">
 			{% csrf_token %}
-			<div class="field">
-				<label class="label">Title</label>
-				<div class="control">
-					{% render_field form.title class="form-control" placeholder="Insert Title" %}
-				</div>
-			</div>
-			<div class="field">
-				<label class="label">Author</label>
-				<div class="control">
-					{% render_field form.author class="form-control" placeholder="Insert Author" %}
-				</div>
-			</div>
-			<div class="field">
-				<label class="label">Region</label>
-				<div class="control">
-					{% render_field form.region class="form-control" placeholder="Insert Region" %}
-				</div>
-			</div>
-			<div class="field">
-				<label class="label">Polygon</label>
-				<div class="leaflet-control-layers-expanded">
-					{% render_field form.shp class="form-control" id="gis" %}
-				</div>
-			</div>
-			<button type="submit" class="btn btn-primary">Upload Polygon File</button>
+			<table style="width: 100%;">
+				<tbody>
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">Title</label>
+								<div class="control">
+									{% render_field form.title class="form-control" placeholder="Insert Title" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">Author</label>
+								<div class="control">
+									{% render_field form.author class="form-control" placeholder="Insert Author" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">Region</label>
+								<div class="control">
+									{% render_field form.region class="form-control" placeholder="Insert Region" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 500px;">
+							<div class="field">
+								<label class="label">Polygon</label>
+								<div style="width: 100%; margin-left: 4%;" class="leaflet-control-layers-expanded">
+									{% render_field form.shp class="form-control" id="gis" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button style="margin-right: 20px;" type="submit" class="btn btn-primary">Save</button>
+								<a href="{% url 'list_polygon' %}">
+									<input style="width: 50px;" class="btn btn-danger" type="button" value="Back">
+								</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</form>
 	</div>
 </div>
