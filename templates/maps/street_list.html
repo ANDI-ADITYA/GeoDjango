@@ -44,15 +44,15 @@
             <thead>
                 <tr>
                     <th style="width: 40%;">Name</th>
-                    <th style="width: 40%;">Category</th>
+                    <th style="width: 40%;">Road Specifications</th>
                     <th style="width: 20%;"></th>
                 </tr>
             </thead>
             <tbody>
             {% for Street in street %}
             <tr>
-                <td>{{Street.name}}</td>
-                <td>{{Street.category}}</td>
+                <td>{{Street.namrjl}}</td>
+                <td>{{Street.spcrjl}}</td>
                 <td>
                     {% if user.is_authenticated %}
                     <div class="btn-group">

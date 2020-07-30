@@ -70,10 +70,37 @@ class RawAdministrasiForm(forms.Form):
 
 ## ------ STREET -------##
 class RawStreetForm(forms.Form):
-    name = forms.CharField()
-    category = forms.CharField()
-    date = forms.DateField()
-    condition = forms. CharField()
+    namrjl = forms.CharField()
+    lcode = forms.CharField()
+    SPCRJL_CHOICES = (
+		('Freeway', 'Freeway'),
+		('Highway', 'Highway'),
+		('Moderate road', 'Moderate road'),
+		('Small road', 'Small road'),
+		('Other', 'Other'),
+	)
+    spcrjl = forms.ChoiceField(choices=SPCRJL_CHOICES)
+    STARJL_CHOICES = (
+		('Operational', 'Operational'),
+		('Will be built', 'Will be built'),
+		('Under construction', 'Under construction'),
+		('No longer used', 'No longer used'),
+		('Other', 'Other'),
+	)
+    starjl = forms.ChoiceField(choices=STARJL_CHOICES)
+    UTKRJL_CHOICES = (
+		('Public roads', 'Public roads'),
+		('Special roads', 'Special roads'),
+		('Other', 'Other'),
+	)
+    utkrjl = forms. ChoiceField(choices=UTKRJL_CHOICES)
+    WLYRJL_CHOICES = (
+		('Urban roads', 'Urban roads'),
+		('Rural roads', 'Rural roads'),
+		('Other', 'Other'),
+	)
+    wlyrjl = forms. ChoiceField(choices=WLYRJL_CHOICES)
+    shp_length = forms.FloatField()
     lines = forms.gis.MultiLineStringField (widget=MultiLineStringWidget(attrs={
         'id': 'gis',
         'style': 'width: 100%;'

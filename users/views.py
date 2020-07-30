@@ -113,27 +113,30 @@ def StreetListView(request):
     return render(request,'maps/street_list.html',{'street':street})
 # Upload-->
 def uploadstreet(request):
-    pointform = RawStreetForm()
+    streetform = RawStreetForm()
     if request.method == "POST":
-        pointform = RawStreetForm(request.POST)
-        if pointform.is_valid():
-            print(pointform.cleaned_data)
-            Street.objects.create(**pointform.cleaned_data)
+        streetform = RawStreetForm(request.POST)
+        if streetform.is_valid():
+            print(streetform.cleaned_data)
+            Street.objects.create(**streetform.cleaned_data)
             return redirect('/')
         else:
-            print(pointform.errors)
+            print(streetform.errors)
     context = {
-            "form": pointform
+            "form": streetform
         }
     return render(request,'upload/upload_Street.html', context)
 # Update Attribute-->
 class StreetAttrUpdateView(UpdateView):
     model = Street
     fields = [
-        'name',
-        'category',
-        'date',
-        'condition',
+        'namrjl',
+        'lcode',
+        'spcrjl',
+        'starjl',
+        'utkrjl',
+        'wlyrjl',
+        'shp_length',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'

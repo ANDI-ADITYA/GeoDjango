@@ -33,7 +33,7 @@
 							<div class="field">
 								<label class="label">Street Name</label>
 								<div class="control">
-									{% render_field form.name class="form-control" placeholder="Insert Name" %}
+									{% render_field form.namrjl class="form-control" placeholder="Insert Name" %}
 								</div>
 							</div>
 						</td>
@@ -41,9 +41,9 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">Category</label>
+								<label class="label">Layer Code</label>
 								<div class="control">
-									{% render_field form.category class="form-control" placeholder="Insert Category" %}
+									{% render_field form.lcode class="form-control" placeholder="Insert Layer Code" %}
 								</div>
 							</div>
 						</td>
@@ -51,9 +51,9 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">Date</label>
+								<label class="label">Road Specifications</label>
 								<div class="control">
-									{% render_field form.date class="form-control" placeholder="Insert Date" %}
+									{% render_field form.spcrjl class="form-control" placeholder="Select Road Specifications" %}
 								</div>
 							</div>
 						</td>
@@ -61,9 +61,39 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">Condition</label>
+								<label class="label">Road Status</label>
 								<div class="control">
-									{% render_field form.condition class="form-control" placeholder="Insert Condition" %}
+									{% render_field form.starjl class="form-control" placeholder="Select Road Status" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">Road use</label>
+								<div class="control">
+									{% render_field form.utkrjl class="form-control" placeholder="Select Road use" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">Road Service Area</label>
+								<div class="control">
+									{% render_field form.wlyrjl class="form-control" placeholder="Select Road Service Area" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">Length (meter)</label>
+								<div class="control">
+									{% render_field form.shp_length class="form-control" placeholder="Insert Length" %}
 								</div>
 							</div>
 						</td>

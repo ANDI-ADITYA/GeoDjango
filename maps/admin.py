@@ -10,7 +10,7 @@ class AdmAdmin(LeafletGeoAdmin):
 	list_display = ('namobj','wadmpr','remark',)
 
 class StreetAdmin(LeafletGeoAdmin):
-	list_display = ('name','category','date')
+	list_display = ('namrjl','utkrjl','spcrjl')
 
 admin.site.register(Point, PointAdmin)
 admin.site.register(Administrasi, AdmAdmin)

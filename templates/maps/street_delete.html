@@ -15,7 +15,7 @@
             <form method="POST">
                 {% csrf_token %}
                 <br>
-                <p>Do you want to delete this <b>{{object.name}}</b>?</p>
+                <p>Do you want to delete this <b>{{object.namrjl}}</b>?</p>
                 <input style="width: 100px; margin-right: 50px;" class="btn btn-warning" type="submit" value="Delete">
                 <a href="{% url 'list_street' %}">
                     <input style="width: 100px;" class="btn btn-success" type="button" value="No">
