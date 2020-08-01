@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Point, Administrasi, Street
+from .models import EduBuild, Administrasi, Street
 from leaflet.admin import LeafletGeoAdmin
 # Register your models here.
 
-class PointAdmin(LeafletGeoAdmin):
-	list_display = ('name','category')
+class EduBuildAdmin(LeafletGeoAdmin):
+	list_display = ('namobj','jnspdk','fgdpdk')
 
 class AdmAdmin(LeafletGeoAdmin):
 	list_display = ('namobj','wadmpr','remark',)
@@ -12,6 +12,6 @@ class AdmAdmin(LeafletGeoAdmin):
 class StreetAdmin(LeafletGeoAdmin):
 	list_display = ('namrjl','utkrjl','spcrjl')
 
-admin.site.register(Point, PointAdmin)
+admin.site.register(EduBuild, EduBuildAdmin)
 admin.site.register(Administrasi, AdmAdmin)
 admin.site.register(Street, StreetAdmin)

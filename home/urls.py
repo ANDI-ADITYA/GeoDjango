@@ -15,10 +15,10 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('register/', user_views.register, name='register'),
 
-    path('point/', user_views.PointListView, name='list_point'),
-    path('point/upload', user_views.uploadpoint, name='upload_point'),
-    path('point/update/<int:pk>', user_views.PointAttrUpdateView.as_view(), name='attr_point'),
-    path('point/delete/<int:pk>', user_views.PointDeleteView.as_view(),name='delete_point'),
+    path('edubuild/', user_views.EduBuildListView, name='list_edubuild'),
+    path('edubuild/upload', user_views.uploadedubuild, name='upload_edubuild'),
+    path('edubuild/update/<int:pk>', user_views.EduBuildAttrUpdateView.as_view(), name='attr_edubuild'),
+    path('edubuild/delete/<int:pk>', user_views.EduBuildDeleteView.as_view(),name='delete_edubuild'),
     
     path('administrasi/', user_views.AdministrasiListView, name='list_administrasi'),
 	path('administrasi/upload', user_views.uploadadministrasi, name='upload_administrasi'),

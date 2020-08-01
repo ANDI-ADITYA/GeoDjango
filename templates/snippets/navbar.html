@@ -19,9 +19,23 @@
             Data List
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/point">Point</a>
+            <a class="dropdown-item" href="{% url 'list_edubuild' %}">Education Building</a>
             <a class="dropdown-item" href="{% url 'list_administrasi' %}">Administrative</a>
-            <a class="dropdown-item" href="/street">Street</a>
+            <a class="dropdown-item" href="{% url 'list_street' %}">Street</a>
+          </div>
+        </div>
+        <div class="nav-item dropdown ml-2">
+          {% if user.is_authenticated %}
+          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Upload
+          </a>
+          {% else %}
+          
+          {% endif %}
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'upload_edubuild' %}">Upload Education Building</a>
+            <a class="dropdown-item" href="{% url 'upload_administrasi' %}">Upload Administrative</a>
+            <a class="dropdown-item" href="{% url 'upload_street' %}">Upload Street</a>
           </div>
         </div>
       </ul>

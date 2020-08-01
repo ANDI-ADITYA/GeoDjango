@@ -20,7 +20,7 @@
 
 {% if user.is_authenticated %}	
 <div class="container jumbotron mt-5">
-	<h2 class="display-4">Upload Point</h2>
+	<h2 class="display-4">Upload Education Building</h2>
 	<hr class="my-3">
 
 	<div class="form-group">
@@ -33,7 +33,7 @@
 						<div class="field">
 							<label class="label">Name</label>
 							<div class="control">
-								{% render_field form.name class="form-control" placeholder="Insert Name" %}
+								{% render_field form.namobj class="form-control" placeholder="Insert Name" %}
 							</div>
 						</div>
 					</td>
@@ -41,9 +41,39 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label class="label">Category</label>
+							<label class="label">Note</label>
 							<div class="control">
-								{% render_field form.category class="form-control" placeholder="Insert Category" %}
+								{% render_field form.remark class="form-control" placeholder="Insert Note" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Layer Code</label>
+							<div class="control">
+								{% render_field form.lcode class="form-control" placeholder="Insert Layer Code" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Function of educational Building</label>
+							<div class="control">
+								{% render_field form.fgdpdk class="form-control" placeholder="Insert Function of educational Building" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Types of education</label>
+							<div class="control">
+								{% render_field form.jnspdk class="form-control" placeholder="Insert Types of education" %}
 							</div>
 						</div>
 					</td>
@@ -51,7 +81,7 @@
 				<tr>
 					<td style="width: 500px;">
 						<div class="field">
-							<label class="label">Point</label>
+							<label class="label">Building</label>
 							<div style="width: 100%; margin-left: 4%;" class="leaflet-control-layers-expanded">
 								{% render_field form.points class="form-control" %}
 							</div>
@@ -61,7 +91,7 @@
 				<tr>
 					<td>
 						<button style="margin-right: 20px;" type="submit" class="btn btn-primary">Save</button>
-							<a href="{% url 'list_point' %}">
+							<a href="{% url 'list_edubuild' %}">
 								<input style="width: 50px;" class="btn btn-danger" type="button" value="Back">
 							</a>
 					</td>

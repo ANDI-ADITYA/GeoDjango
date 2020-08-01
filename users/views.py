@@ -4,13 +4,13 @@ from django.core.files.storage import FileSystemStorage
 from django.views.generic import DeleteView
 from django.views.generic.edit import UpdateView
 from maps.models import (
-    Point,
+    EduBuild,
     Administrasi,
     Street
 )
 from .forms import (
     UserRegisterForm,
-    RawPointForm,
+    RawEduBuildForm,
     RawAdministrasiForm,
     RawStreetForm
 )
@@ -29,40 +29,43 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-# Point-->
+# Education Building-->
 # List-->
-def PointListView(request):
-    point = Point.objects.all()
-    return render(request,'maps/point_list.html',{'point':point})
+def EduBuildListView(request):
+    edubuild = EduBuild.objects.all()
+    return render(request,'maps/edubuild_list.html',{'edubuild':edubuild})
 # Upload-->
-def uploadpoint(request):
-    pointform = RawPointForm()
+def uploadedubuild(request):
+    edubuildform = RawEduBuildForm()
     if request.method == "POST":
-        pointform = RawPointForm(request.POST)
-        if pointform.is_valid():
-            print(pointform.cleaned_data)
-            Point.objects.create(**pointform.cleaned_data)
+        edubuildform = RawEduBuildForm(request.POST)
+        if edubuildform.is_valid():
+            print(edubuildform.cleaned_data)
+            EduBuild.objects.create(**edubuildform.cleaned_data)
             return redirect('/')
         else:
-            print(pointform.errors)
+            print(edubuildform.errors)
     context = {
-            "form": pointform
+            "form": edubuildform
         }
-    return render(request,'upload/upload_Point.html', context)
+    return render(request,'upload/upload_edubuild.html', context)
 # Update Attribute-->
-class PointAttrUpdateView(UpdateView):
-    model = Point
+class EduBuildAttrUpdateView(UpdateView):
+    model = EduBuild
     fields = [
-        'name',
-        'category',
+        'namobj',
+        'remark',
+        'lcode',
+        'fgdpdk',
+        'jnspdk',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
 # Delete-->
-class PointDeleteView(DeleteView):
-    model = Point
-    template_name = "maps/point_delete.html"
-    success_url = "/point/"
+class EduBuildDeleteView(DeleteView):
+    model = EduBuild
+    template_name = "maps/edubuild_delete.html"
+    success_url = "/street/"
 
 
 # Administrasi-->

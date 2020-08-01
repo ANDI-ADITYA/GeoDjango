@@ -45,10 +45,36 @@ class MultiLineStringWidget(forms.gis.MultiLineStringWidget, forms.gis.BaseOsmWi
             'floppyforms/js/MapWidget.js',
         )
 
-##------ POINT -------##
-class RawPointForm(forms.Form):
-    name = forms.CharField()
-    category = forms.CharField()
+##------ Education Building -------##
+class RawEduBuildForm(forms.Form):
+    namobj = forms.CharField()
+    remark = forms.CharField()
+    lcode = forms.CharField()
+    FGDPDK_CHOICES = (
+        ('College', 'College'),
+        ('Senior secondary Education (SMA, MA, SMALB)', 'Senior secondary Education (SMA, MA, SMALB)'),
+		('Vocational secondary education (SMK, MAK)', 'Vocational secondary education (SMK, MAK)'),
+		('First secondary education (SMP, MTs, SMPLB)', 'First secondary education (SMP, MTs, SMPLB)'),
+		('Primary education (SD, MI, SDLB)', 'Primary education (SD, MI, SDLB)'),
+		('Early childhood Education (TK, RA, TPA, KB)', 'Early childhood Education (TK, RA, TPA, KB)'),
+		('Course Board', 'Course Board'),
+		('Training Institute', 'Training Institute'),
+		('Community Learning Activities Center', 'Community Learning Activities Center'),
+		('Religious Education (Pesantren, Pasraman, etc.)', 'Religious Education (Pesantren, Pasraman, etc.)'),
+		('Other', 'Other'),
+    )
+    fgdpdk = forms.ChoiceField(choices=FGDPDK_CHOICES)
+    JNSPDK_CHOICES = (
+        ('General education', 'General education'),
+		('Vocational education', 'Vocational education'),
+		('Academic education', 'Academic education'),
+		('Professional education', 'Professional education'),
+		('Religious education', 'Religious education'),
+		('Special education', 'Special education'),
+		('Special Service Education', 'Special Service Education'),
+		('Other', 'Other'),
+    )
+    jnspdk = forms.ChoiceField(choices=JNSPDK_CHOICES)
     points = forms.gis.PointField(widget=PointWidget(attrs={
         'id': 'gis',
         'style': 'width: 100%;'

@@ -16,9 +16,9 @@
         <table style="width: 100%;">
             <tbody>
                 <tr>
-                    <td style="width: 90%"><h2>List Point</h2></td>
+                    <td style="width: 90%"><h2>List Education Building</h2></td>
                     <td style="width: 10%">
-                        <a class="btn btn-secondary" href="{% url 'upload_point' %}">
+                        <a class="btn btn-secondary" href="{% url 'upload_edubuild' %}">
                             Upload
                         </a>
                     </td>
@@ -29,7 +29,7 @@
         <table style="width: 100%;">
             <tbody>
                 <tr>
-                    <td style="width: 90%"><h2>List Point</h2></td>
+                    <td style="width: 90%"><h2>List Education Building</h2></td>
                     <td style="width: 10%">
                         <a class="btn btn-secondary" href="#" data-toggle="popover" data-trigger="focus" data-content="You must login first!!!">
                             Upload
@@ -44,15 +44,15 @@
             <thead>
                 <tr>
                     <th style="width: 40%;">Name</th>
-                    <th style="width: 40%;">Category</th>
+                    <th style="width: 40%;">Types</th>
                     <th style="width: 20%;"></th>
                 </tr>
             </thead>
             <tbody>
-            {% for Point in point %}
+            {% for EduBuild in edubuild %}
             <tr>
-                <td>{{Point.name}}</td>
-                <td>{{Point.category}}</td>
+                <td>{{EduBuild.namobj}}</td>
+                <td>{{EduBuild.jnspdk}}</td>
                 <td>
                     {% if user.is_authenticated %}
                     <div class="btn-group">
@@ -60,8 +60,8 @@
                             Edit
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'attr_point' Point.pk %}">Update Attribute</a>
-                            <a class="dropdown-item" href="{% url 'delete_point' Point.pk %}">Delete</a>
+                            <a class="dropdown-item" href="{% url 'attr_edubuild' EduBuild.pk %}">Update Attribute</a>
+                            <a class="dropdown-item" href="{% url 'delete_edubuild' EduBuild.pk %}">Delete</a>
                         </div>
                     </div>
                     {% else %}
@@ -70,8 +70,8 @@
                             Edit
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item disabled" href="{% url 'attr_point' Point.pk %}">Update Attribute</a>
-                            <a class="dropdown-item disabled" href="{% url 'delete_point' Point.pk %}">Delete</a>
+                            <a class="dropdown-item disabled" href="{% url 'attr_edubuilddelete_edubuild' EduBuild.pk %}">Update Attribute</a>
+                            <a class="dropdown-item disabled" href="{% url 'delete_edubuild' EduBuild.pk %}">Delete</a>
                         </div>
                     </div>
                     {% endif %}

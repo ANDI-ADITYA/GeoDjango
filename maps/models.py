@@ -5,17 +5,43 @@ from django.utils.text import slugify
 # Create your models here.
 
 ##------ POINT -------##
-class Point(models.Model):
-	name = models.CharField(max_length=100)
-	category = models.CharField(max_length=50)
+class EduBuild(models.Model):
+	namobj = models.CharField(max_length=100)
+	remark = models.CharField(max_length=250)
+	lcode = models.CharField(max_length=20)
+	FGDPDK_CHOICES = (
+		('College', 'College'),
+		('Senior secondary Education (SMA, MA, SMALB)', 'Senior secondary Education (SMA, MA, SMALB)'),
+		('Vocational secondary education (SMK, MAK)', 'Vocational secondary education (SMK, MAK)'),
+		('First secondary education (SMP, MTs, SMPLB)', 'First secondary education (SMP, MTs, SMPLB)'),
+		('Primary education (SD, MI, SDLB)', 'Primary education (SD, MI, SDLB)'),
+		('Early childhood Education (TK, RA, TPA, KB)', 'Early childhood Education (TK, RA, TPA, KB)'),
+		('Course Board', 'Course Board'),
+		('Training Institute', 'Training Institute'),
+		('Community Learning Activities Center', 'Community Learning Activities Center'),
+		('Religious Education (Pesantren, Pasraman, etc.)', 'Religious Education (Pesantren, Pasraman, etc.)'),
+		('Other', 'Other'),
+	)
+	fgdpdk = models.CharField(max_length=50, choices=FGDPDK_CHOICES)
+	JNSPDK_CHOICES = (
+		('General education', 'General education'),
+		('Vocational education', 'Vocational education'),
+		('Academic education', 'Academic education'),
+		('Professional education', 'Professional education'),
+		('Religious education', 'Religious education'),
+		('Special education', 'Special education'),
+		('Special Service Education', 'Special Service Education'),
+		('Other', 'Other'),
+	)
+	jnspdk = models.CharField(max_length=30, choices=JNSPDK_CHOICES)
 	points = models.PointField(srid=4326)
 
 	def __unicode__(self):
-		return self.name
+		return self.namobj
 
 	class Meta:
-		ordering = ('name',)
-		verbose_name_plural = "Points" 
+		ordering = ('namobj',)
+		verbose_name_plural = "Education Building" 
 
 ##------ POLYGON -------##
 class Administrasi(models.Model):
@@ -38,7 +64,7 @@ class Administrasi(models.Model):
 ## ------ STREET -------##
 class Street(models.Model):
 	namrjl = models.CharField(max_length=100)
-	lcode = models.CharField(max_length=50)
+	lcode = models.CharField(max_length=20)
 	SPCRJL_CHOICES = (
 		('Freeway', 'Freeway'),
 		('Highway', 'Highway'),

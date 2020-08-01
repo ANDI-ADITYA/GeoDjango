@@ -20,7 +20,7 @@
 
 {% if user.is_authenticated %}	
 <div class="container jumbotron mt-5">
-	<h2 class="display-7">Update {{object.name}} Attribute</h2>
+	<h2 class="display-7">Update {{object.namobj}} Attribute</h2>
 	<hr class="my-3">
 
 	<div class="form-group">
@@ -29,19 +29,40 @@
 			<div class="field">
 				<label class="label">Name</label>
 				<div class="control">
-					{% render_field form.name class="form-control" placeholder="Insert Name" %}
+					{% render_field form.namobj class="form-control" placeholder="Insert Name" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Category</label>
+				<label class="label">Note</label>
 				<div class="control">
-					{% render_field form.category class="form-control" placeholder="Insert Category" %}
+					{% render_field form.remark class="form-control" placeholder="Insert Note" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Layer Code</label>
+				<div class="control">
+					{% render_field form.lcode class="form-control" placeholder="Insert Layer Code" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Function of educational Building</label>
+				<div class="control">
+					{% render_field form.fgdpdk class="form-control" placeholder="Insert Function of educational Building" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Types of education</label>
+				<div class="control">
+					{% render_field form.jnspdk class="form-control" placeholder="Insert Types of education" %}
 				</div>
 			</div>
 			<br>
 			<button style="margin-right: 20px;" type="submit" class="btn btn-success">Save</button>
-			<a href="{% url 'list_point' %}">
+			<a href="{% url 'list_edubuild' %}">
                 <input style="width: 50px;" class="btn btn-danger" type="button" value="No">
             </a>
 		</form>

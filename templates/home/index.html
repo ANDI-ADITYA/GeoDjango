@@ -37,22 +37,51 @@
 			});
 		
 		// Add data map from database with using L.GeoJSON.AJAX plugin.
-			var Point = new L.GeoJSON.AJAX("{% url 'maps:data_points' %}",{
+			var EduBuild = new L.GeoJSON.AJAX("{% url 'maps:data_edubuild' %}",{
 				onEachFeature: function(feature, layer){
-					layer.bindPopup('<div class="container-fluid rounded-lg p-1 my-1 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.name.toString()+'</td></tr> <tr><td>Category</td> <td>: '+feature.properties.category.toString()+'</td></tr></table></div>');
-				},
-			});
-			Point.addTo(map);
-			var Administrasi = new L.GeoJSON.AJAX("{% url 'maps:data_administrasi' %}",{
-				onEachFeature: function(feature, layer){
-					layer.bindPopup('<div class="container-fluid rounded-lg p-1 my-1 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>District</td> <td>: '+feature.properties.wadmkk.toString()+'</td></tr> <tr><td>Province</td> <td>: '+feature.properties.wadmpr.toString()+'</td></tr> <tr><td>District Capital</td> <td>: '+feature.properties.wiadkk.toString()+'</td></tr> <tr><td>Area (Hectares)</td> <td>: '+feature.properties.shp_area.toString()+' ha</td></tr></table></div>');
+					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>Function</td> <td>: '+feature.properties.fgdpdk.toString()+'</td></tr> <tr><td>Types of education</td> <td>: '+feature.properties.jnspdk.toString()+'</td></tr></table>');
 				},
 			});
 			var Street = new L.GeoJSON.AJAX("{% url 'maps:data_street' %}",{
+				style: function colors(feature){
+					switch (feature.properties.spcrjl) {
+						case 'Freeway':
+							return{
+								color: 'white'
+							};
+						break;
+						case 'Highway':
+							return{
+								color: 'green'
+							};
+						break;
+						case 'Moderate road':
+							return{
+								color: 'yellow'
+							};
+						break;
+						case 'Small road':
+							return{
+								color: 'red'
+							};
+						break;
+						case 'Other':
+							return{
+								color: 'orange'
+							};
+						break;
+					}
+				},
 				onEachFeature: function(feature, layer){
-					layer.bindPopup('<div class="container-fluid rounded-lg p-1 my-1 bg-light text-dark"><table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.name.toString()+'</td></tr> <tr><td>Category</td> <td>: '+feature.properties.category.toString()+'</td></tr> <tr><td>Region</td> <td>: '+feature.properties.condition.toString()+'</td></tr></table></div>');
+					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namrjl.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>Road Specifications</td> <td>: '+feature.properties.spcrjl.toString()+'</td></tr> <tr><td>Road Status</td> <td>: '+feature.properties.starjl.toString()+'</td></tr> <tr><td>Road use</td> <td>: '+feature.properties.utkrjl.toString()+'</td></tr> <tr><td>Road Service Area</td> <td>: '+feature.properties.wlyrjl.toString()+'</td></tr> <tr><td>Length (meter)</td> <td>: '+feature.properties.shp_length.toString()+' m</td></tr></table></div>');
 				},
 			});
+			var Administrasi = new L.GeoJSON.AJAX("{% url 'maps:data_administrasi' %}",{
+				onEachFeature: function(feature, layer){
+					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>District</td> <td>: '+feature.properties.wadmkk.toString()+'</td></tr> <tr><td>Province</td> <td>: '+feature.properties.wadmpr.toString()+'</td></tr> <tr><td>District Capital</td> <td>: '+feature.properties.wiadkk.toString()+'</td></tr> <tr><td>Area (Hectares)</td> <td>: '+feature.properties.shp_area.toString()+' ha</td></tr></table>');
+				},
+			});
+			
 
 		// Add control layers
 			var baseLayers = {
@@ -61,7 +90,7 @@
 			}
 			var overlayMaps = {
 				"Layers": {
-					"Building": Point,
+					"Building": EduBuild,
 					"Streets": Street,
 					"Administrasi": Administrasi
 				}
