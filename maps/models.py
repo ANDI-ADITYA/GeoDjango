@@ -1,10 +1,9 @@
-from __future__ import unicode_literals
 from django.db import models
 from django.contrib.gis.db import models
 from django.utils.text import slugify
 # Create your models here.
 
-##------ POINT -------##
+##------ EduBuild -------##
 class EduBuild(models.Model):
 	namobj = models.CharField(max_length=100)
 	remark = models.CharField(max_length=250)
@@ -43,7 +42,7 @@ class EduBuild(models.Model):
 		ordering = ('namobj',)
 		verbose_name_plural = "Education Building" 
 
-##------ POLYGON -------##
+##------ Administrasi -------##
 class Administrasi(models.Model):
 	namobj = models.CharField(max_length=100)
 	remark = models.CharField(max_length=250)
@@ -61,7 +60,7 @@ class Administrasi(models.Model):
 		ordering = ('namobj',)
 		verbose_name_plural = "Administrasi"
 
-## ------ STREET -------##
+## ------ Street -------##
 class Street(models.Model):
 	namrjl = models.CharField(max_length=100)
 	lcode = models.CharField(max_length=20)
